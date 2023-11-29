@@ -16,7 +16,7 @@ export const CharacterModel = () => {
   const model = useGLTF('/character_model.glb') as CharacterGLTF;
   
   return (
-    <group dispose={null} userData={{type: 'player'}} position={[0, 1, 0]}>
+    <group dispose={null} userData={{type: 'player'}} >
       <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01} position={[0, -0.9, 0]}>
         <primitive object={model.nodes.mixamorigHips} />
         <skinnedMesh 

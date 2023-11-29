@@ -13,10 +13,9 @@ function App() {
       <Canvas
         shadows
         onPointerDown={(e) => {
-          // remove after test scene
-          // if (e.pointerType === 'mouse') {
-          //   (e.target as HTMLCanvasElement).requestPointerLock();
-          // }
+          if (e.pointerType === 'mouse') {
+            (e.target as HTMLCanvasElement).requestPointerLock();
+          }
         }}
       >
           <Perf position="top-left" />
@@ -28,7 +27,7 @@ function App() {
           <Light />
           <Scene />
           {/* test scene */}
-          <OrbitControls />
+          {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );

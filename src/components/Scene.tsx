@@ -1,11 +1,11 @@
 import { Physics } from '@react-three/rapier';
 import { Ground } from '../level/Ground';
-import { CharacterModel } from './CharacterModel';
+import { Character } from './Character';
 
 export const Scene = () => {
   return (
     <Physics timeStep="vary">
-      <CharacterModel />
+      <Character />
       <Ground />
     </Physics>
   );
