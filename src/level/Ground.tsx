@@ -8,7 +8,7 @@ interface SceneModel extends GLTF {
 }
 
 export const Ground = () => {
-  const {nodes, materials} = useGLTF('/ground2.glb') as SceneModel;
+  const {nodes, materials} = useGLTF('/ground_level.glb') as SceneModel;
   
   return (
     <RigidBody type="fixed" colliders="trimesh">
@@ -20,3 +20,5 @@ export const Ground = () => {
     </RigidBody>
   )
 }
+
+useGLTF.preload('/ground_level.glb');

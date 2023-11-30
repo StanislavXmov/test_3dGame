@@ -55,7 +55,7 @@ export const Character = () => {
   useFrame(() => {
     const body = controllerRef.current;
     if (body) {
-      if (body.translation().y < -3) {
+      if (body.translation().y < -5) {
         body.sleep();
         body.setTranslation(position, true);
       }
