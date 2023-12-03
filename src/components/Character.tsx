@@ -64,7 +64,7 @@ export const Character = () => {
 
   return (
     <KeyboardControls map={keyboardMap}>
-      <EcctrlController ref={controllerRef} position={position} animated>
+      <EcctrlController ref={controllerRef} position={position} animated followLight>
         <EcctrlAnimation characterURL='/character_model.glb' animationSet={animationSet} >
           <CharacterModel />
         </EcctrlAnimation>

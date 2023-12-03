@@ -11,6 +11,7 @@ export const Light = () => {
         shadow-camera-right={20}
         shadow-camera-bottom={-20}
         shadow-camera-left={-20}
+        name="followLight"
       />
       <ambientLight intensity={0.2} />
     </>
