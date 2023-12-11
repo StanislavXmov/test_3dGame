@@ -19,7 +19,7 @@ type DynamicPlatformProps = {
 const dir = new Vector3(5, 0, 5);
 
 export const DynamicPlatform = ({position, axis = 'x', dir}: DynamicPlatformProps) => {
-  const {nodes, materials} = useGLTF('/island.glb') as SceneModel;
+  const {nodes, materials} = useGLTF('./island.glb') as SceneModel;
   const sideMovePlatformRef = useRef<RapierRigidBody>();
 
   let time = null;
@@ -62,3 +62,5 @@ export const DynamicPlatform = ({position, axis = 'x', dir}: DynamicPlatformProp
     </RigidBody>
   );
 };
+
+useGLTF.preload('./island.glb');
