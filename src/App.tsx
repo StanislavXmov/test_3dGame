@@ -4,12 +4,17 @@ import { Perf } from 'r3f-perf';
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Light } from './environment/Light';
 import { Scene } from './components/Scene';
+import { useDevice } from './hooks/useDevice';
+import { Joystick } from './components/Joystick';
 
+const dev = false;
 
 function App() {
+  const isMobile = useDevice();
   
   return (
     <div className={styles.app}>
+      {isMobile && <Joystick />}
       <Canvas
         shadows
         onPointerDown={(e) => {
@@ -18,7 +23,7 @@ function App() {
           }
         }}
       >
-          <Perf position="top-left" />
+          {dev && <Perf position="top-left" />}
           <Environment
             files="./test.hdr"
             background
