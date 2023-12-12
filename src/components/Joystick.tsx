@@ -1,4 +1,4 @@
-import { EcctrlJoystick } from "ecctrl"
+import { EcctrlJoystick } from "ecctrl";
 import { MeshStandardMaterial } from "three"
 
 export const Joystick = () => {
