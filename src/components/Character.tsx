@@ -38,6 +38,11 @@ export const Character = () => {
   const controllerRef = useRef<RapierRigidBody>();
 
   useEffect(() => {
+    const body = controllerRef.current;
+    if (body) {
+      body.sleep();
+    }
+
     const unsubsribePosition = usePosition.subscribe(
       (state) => state.position,
       (value) => {
