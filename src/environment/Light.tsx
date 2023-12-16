@@ -13,7 +13,7 @@ export const Light = () => {
         shadow-camera-left={-20}
         name="followLight"
       />
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.3} />
     </>
   )
 };
