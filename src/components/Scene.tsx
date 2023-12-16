@@ -33,6 +33,46 @@ export const Scene = () => {
         rigidBody
         position={new Vector3(-3, 0, 0)}
       />
+      <Model
+        url='./flower.glb'
+        nodeName='mesh'
+        materialName='Material.001'
+        rigidBody={false}
+        rotation={new Vector3(Math.PI / 2, -Math.PI / 8, 0)}
+        position={new Vector3(-5.4, 6, -24)}
+      />
+      <Model
+        url='./stand.glb'
+        nodeName='mesh'
+        materialName='Material'
+        rigidBody
+        rotation={new Vector3(0, -Math.PI / 2, 0)}
+        position={new Vector3(2, 0, -4)}
+      />
+      <Model
+        url='./stand.glb'
+        nodeName='mesh'
+        materialName='Material'
+        rigidBody
+        rotation={new Vector3(0, -Math.PI / 2, 0)}
+        position={new Vector3(-2, 0, -12)}
+      />
+      <Model
+        url='./stand.glb'
+        nodeName='mesh'
+        materialName='Material'
+        rigidBody
+        rotation={new Vector3(0, -Math.PI / 2, 0)}
+        position={new Vector3(3, 0, -20)}
+      />
+      <Model
+        url='./standMin.glb'
+        nodeName='mesh'
+        materialName='Material'
+        rigidBody
+        rotation={new Vector3(0, Math.PI / 4, 0)}
+        position={new Vector3(-4, 0, -16)}
+      />
     </Physics>
   );
 };
