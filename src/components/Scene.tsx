@@ -2,16 +2,43 @@ import { Physics } from '@react-three/rapier';
 // import { Ground } from '../level/Ground';
 import { Character } from './Character';
 // import { DynamicPlatform } from '../level/DynamicPlatform';
-import { Vector3 } from 'three';
+import { Euler, Vector3 } from 'three';
 import { Model } from '../level/Model';
 import { Hangar } from '../level/Hangar';
 import { canvasList } from '../level/data';
 import { ImageBlock } from '../level/ImageBlock';
+import { Text } from '@react-three/drei';
 
 export const Scene = () => {
   return (
     <Physics timeStep="vary">
       <Character />
+      <Text 
+        position={[0, 4, 16]}
+        rotation={new Euler().setFromVector3(new Vector3(0, Math.PI, 0))}
+        color="black" 
+        anchorX="center" 
+        anchorY="middle"
+        strokeColor={'black'}
+        fillOpacity={0}
+        strokeWidth={'0.6%'}
+        fontSize={2}
+      >
+        Exhibition &#60;People&#62;
+      </Text>
+      <Text 
+        position={[5, 2.6, 14]}
+        rotation={new Euler().setFromVector3(new Vector3(0, Math.PI, 0))}
+        color="black" 
+        anchorX="center" 
+        anchorY="middle"
+        strokeColor={'black'}
+        fillOpacity={0}
+        strokeWidth={'0.6%'}
+        fontSize={1}
+      >
+        by xmov
+      </Text>
       <Hangar />
       <Model
         url='./logo.glb'

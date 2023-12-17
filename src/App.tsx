@@ -7,7 +7,7 @@ import { Scene } from './components/Scene';
 import { useDevice } from './hooks/useDevice';
 import { Joystick } from './components/Joystick';
 
-const dev = true;
+const dev = false;
 
 function App() {
   const isMobile = useDevice();
