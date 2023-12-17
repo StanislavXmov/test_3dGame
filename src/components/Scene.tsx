@@ -5,6 +5,8 @@ import { Character } from './Character';
 import { Vector3 } from 'three';
 import { Model } from '../level/Model';
 import { Hangar } from '../level/Hangar';
+import { canvasList } from '../level/data';
+import { ImageBlock } from '../level/ImageBlock';
 
 export const Scene = () => {
   return (
@@ -39,7 +41,7 @@ export const Scene = () => {
         materialName='Material.001'
         rigidBody={false}
         rotation={new Vector3(Math.PI / 2, -Math.PI / 8, 0)}
-        position={new Vector3(-5.4, 6, -24)}
+        position={new Vector3(-5.4, 5.5, -24)}
       />
       <Model
         url='./stand.glb'
@@ -73,6 +75,23 @@ export const Scene = () => {
         rotation={new Vector3(0, Math.PI / 4, 0)}
         position={new Vector3(-4, 0, -16)}
       />
+      <Model
+        url='./xmov.glb'
+        nodeName='Cube'
+        materialName='Material'
+        rigidBody
+        rotation={new Vector3(0, -Math.PI, 0)}
+        position={new Vector3(0, 0, -25.96)}
+      />
+      {canvasList.map((c, i) => (
+        <ImageBlock
+          key={i}
+          url={c.url}
+          position={c.position}
+          rotation={c.rotation}
+          scale={c.scale}
+        />
+      ))}
     </Physics>
   );
 };
