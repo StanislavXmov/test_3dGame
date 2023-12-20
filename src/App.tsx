@@ -8,7 +8,7 @@ import { useDevice } from './hooks/useDevice';
 import { Joystick } from './components/Joystick';
 import { Phase, useGame } from './store/useGame';
 
-const dev = false;
+const dev = true;
 
 function App() {
   const isMobile = useDevice();

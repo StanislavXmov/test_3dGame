@@ -1,5 +1,5 @@
 import { ThreeEvent, useThree } from "@react-three/fiber";
-import { usePointer } from "../../store/usePointer";
+import { startPlayerPoint, usePointer } from "../../store/usePointer";
 import { useCallback, useEffect } from "react";
 import { Vector3 } from "three";
 import { Ghost } from "./Ghost";
@@ -7,7 +7,7 @@ import { Voxel } from "./Voxel";
 
 export const PointerLevel = () => {
   const voxels = usePointer(s => s.voxels);
-  console.log(voxels);
+  // console.log(voxels);
   
   const setVoxels = usePointer(s => s.setVoxels);
   const setPos = usePointer(s => s.setPos);
@@ -20,7 +20,7 @@ export const PointerLevel = () => {
       const intersect = e.intersections[0];
       const position = new Vector3();
       position.copy(intersect.point).add(intersect.face.normal);
-      position.divideScalar(5).floor().multiplyScalar(5).addScalar(2.5);
+      position.divideScalar(2.5).floor().multiplyScalar(2.5).addScalar(1.25);
       setPos(position);
       setIsGhost(true);
     }
@@ -32,18 +32,22 @@ export const PointerLevel = () => {
       const intersect = e.intersections[0];
       const position = new Vector3();
       position.copy(intersect.point).add(intersect.face.normal);
-      position.divideScalar(5).floor().multiplyScalar(5).addScalar(2.5);
+      position.divideScalar(2.5).floor().multiplyScalar(2.5).addScalar(1.25);
+      if (position.equals(startPlayerPoint)) {
+        return;
+      }
       setVoxels(position);
     }
   }
 
   useEffect(() => {
-    camera.position.set( 50, 80, 130 );
+    camera.parent = null;
+    camera.position.set(50, 60, 50);
   }, []);
 
   return (
     <>
-      <gridHelper args={[100, 20]} />
+      <gridHelper args={[100, 40]} />
       <Ghost />
       <group
         onPointerMove={onPointerMove}

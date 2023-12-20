@@ -10,8 +10,11 @@ interface VoxelsState {
   setVoxels: (v: Vector3) => void;
 }
 
+export const startPoint = new Vector3(-1.25, 1.25, -50 + 1.25);
+export const startPlayerPoint = new Vector3(startPoint.x, startPoint.y + 5, startPoint.z);
+
 export const usePointer = create<VoxelsState>()(set => ({
-  voxels: [new Vector3(2.5, 2.5, 47.5), new Vector3(-2.5, 2.5, -47.5)],
+  voxels: [new Vector3(1.25, 1.25, 50 - 1.25), startPoint],
   setVoxels: (v) => set(state => ({voxels: [...state.voxels, v]})),
   pos: new Vector3(),
   setPos: (v) => set(() => ({pos: v})),
