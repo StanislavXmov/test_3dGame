@@ -6,18 +6,30 @@ import { Light } from './environment/Light';
 import { Scene } from './components/Scene';
 import { useDevice } from './hooks/useDevice';
 import { Joystick } from './components/Joystick';
+import { Phase, useGame } from './store/useGame';
 
 const dev = false;
 
 function App() {
   const isMobile = useDevice();
+
+  const phase = useGame(s => s.phase);
+  const playPhase = useGame(s => s.play);
+  const buildPhase = useGame(s => s.build);
   
   return (
     <div className={styles.app}>
+      <nav className={styles.nav}>
+        <button onClick={() => buildPhase()}>Build</button>
+        <button onClick={() => playPhase()}>Play</button>
+      </nav>
       {isMobile && <Joystick />}
       <Canvas
         shadows
         onPointerDown={(e) => {
+          if (phase === Phase.build) {
+            return;
+          }
           if (e.pointerType === 'mouse') {
             (e.target as HTMLCanvasElement).requestPointerLock();
           }
@@ -32,7 +44,7 @@ function App() {
           <Light />
           <Scene />
           {/* test scene */}
-          {/* <OrbitControls /> */}
+          {phase === Phase.build && <OrbitControls />}
       </Canvas>
     </div>
   );
