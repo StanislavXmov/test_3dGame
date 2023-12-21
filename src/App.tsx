@@ -8,7 +8,7 @@ import { useDevice } from './hooks/useDevice';
 import { Joystick } from './components/Joystick';
 import { Phase, useGame } from './store/useGame';
 
-const dev = true;
+const dev = false;
 
 function App() {
   const isMobile = useDevice();
@@ -20,10 +20,10 @@ function App() {
   return (
     <div className={styles.app}>
       <nav className={styles.nav}>
-        <button onClick={() => buildPhase()}>Build</button>
-        <button onClick={() => playPhase()}>Play</button>
+        <button className={styles.phaseButton} onClick={() => buildPhase()}>Build</button>
+        <button className={styles.phaseButton} onClick={() => playPhase()}>Play</button>
       </nav>
-      {isMobile && <Joystick />}
+      {isMobile && phase === Phase.play && <Joystick />}
       <Canvas
         shadows
         onPointerDown={(e) => {
