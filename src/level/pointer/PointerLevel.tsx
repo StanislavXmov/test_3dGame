@@ -1,5 +1,5 @@
 import { ThreeEvent, useThree } from "@react-three/fiber";
-import { startPlayerPoint, usePointer } from "../../store/usePointer";
+import { endPointPosition, startPlayerPoint, usePointer } from "../../store/usePointer";
 import { useCallback, useEffect } from "react";
 import { Vector3 } from "three";
 import { Ghost } from "./Ghost";
@@ -9,6 +9,7 @@ export const PointerLevel = () => {
   const voxels = usePointer(s => s.voxels);
   // console.log(voxels);
   
+  const endVoxel = usePointer(s => s.endVoxel);
   const setVoxels = usePointer(s => s.setVoxels);
   const setPos = usePointer(s => s.setPos);
   const setIsGhost = usePointer(s => s.setIsGhost);
@@ -33,7 +34,8 @@ export const PointerLevel = () => {
       const position = new Vector3();
       position.copy(intersect.point).add(intersect.face.normal);
       position.divideScalar(2.5).floor().multiplyScalar(2.5).addScalar(1.25);
-      if (position.equals(startPlayerPoint)) {
+      
+      if (position.equals(startPlayerPoint) || position.equals(endPointPosition)) {
         return;
       }
       setVoxels(position);
@@ -53,6 +55,7 @@ export const PointerLevel = () => {
         onPointerMove={onPointerMove}
         onPointerDown={onPointerDown}
       >
+        <Voxel position={endVoxel} />
         {voxels.map((v, i) => <Voxel key={i} position={v} />)}
       </group>
     </>

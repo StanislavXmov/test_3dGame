@@ -12,7 +12,7 @@ export const Scene = () => {
   const phase = useGame(s => s.phase);
 
   return (
-    <Physics timeStep="vary">
+    <Physics timeStep="vary" debug>
       {phase === Phase.build && <PointerLevel />}
       {phase === Phase.play && <PointerGameLevel />}
     </Physics>
