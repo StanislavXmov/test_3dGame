@@ -53,7 +53,7 @@ export const PointerLevel = () => {
 
   return (
     <>
-      <gridHelper args={[100, 40]} />
+      <gridHelper args={[100 * 0.8, 40 * 0.8]} />
       <Ghost />
       <group
         onPointerMove={onPointerMove}

@@ -3,7 +3,8 @@ import { usePointer } from "../../store/usePointer";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useGLTF } from "@react-three/drei";
-import { usePosition } from "../../store/usePosition";
+import { useGame } from "../../store/useGame";
+import { useDevice } from "../../hooks/useDevice";
 
 const n = 2.5;
 
@@ -39,18 +40,15 @@ export const RigidVoxel = ({position}: {position: Vector3}) => {
       colliders="cuboid" 
       position={position}
     >
-      {/* <mesh >
-        <boxGeometry args={[n, n, n]} />
-        <meshStandardMaterial color={'#5E6A81'} />
-      </mesh> */}
       <mesh castShadow receiveShadow geometry={nodes.Cube.geometry} material={materials['Material']} />
     </RigidBody>
   );
 }
 
 export const RigidEndVoxel = ({position}: {position: Vector3}) => {
-  // const setPosition = usePosition(s => s.setPosition);
-  // const startPosition = usePosition(s => s.position);
+  const isMobile = useDevice();
+  const buildPhase = useGame(s => s.build);
+  const clearVoxel = usePointer(s => s.clearVoxel);
   
   return (
     <RigidBody 
@@ -64,11 +62,11 @@ export const RigidEndVoxel = ({position}: {position: Vector3}) => {
         sensor
         onIntersectionEnter={(e) => {
           console.log('ENTER', e);
-          // e.rigidBodyObject.traverse(o => {
-          //   if (o.userData.type === 'player') {
-          //     setPosition(startPosition);
-          //   }
-          // });
+          if (!isMobile) {
+            document.exitPointerLock();
+          }
+          clearVoxel();
+          buildPhase();
         }}
       />
     </RigidBody>

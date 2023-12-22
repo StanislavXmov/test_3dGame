@@ -15,7 +15,8 @@ const randomRoundNumber = (min: number, max: number, array: number[]): number =>
 }
 
 const setX = () => {
-  const n = randomRoundNumber(-38, 38, []);
+  // const n = randomRoundNumber(-38, 38, []);
+  const n = randomRoundNumber(-18, 18, []);
   if (n % 2 === 0) {
     if (n >= 0) {
       return n * 1.25 + 1.25;
@@ -33,9 +34,9 @@ const setY = () => {
   return n * 1.25;
 }
 
-const setEndPoint = () => new Vector3(setX(), setY(), 50 - 1.25);
+const setEndPoint = () => new Vector3(setX(), setY(), 20 - 1.25);
 // const setEndPoint = () => new Vector3(-1.25 + 2.5, 1.25, -50 + 1.25 + 2.5);
-const setStartPoint = () => new Vector3(setX(), setY(), -50 + 1.25);
+const setStartPoint = () => new Vector3(setX(), setY(), -20 + 1.25);
 // const setStartPoint = () => new Vector3(-1.25, 1.25, -50 + 1.25);
 
 interface VoxelsState {
@@ -45,6 +46,7 @@ interface VoxelsState {
   setIsGhost: (v: boolean) => void;
   voxels: Vector3[];
   setVoxels: (v: Vector3) => void;
+  clearVoxel: () => void;
   endVoxel: Vector3;
   setEnd: (v: Vector3) => void;
   startVoxel: Vector3;
@@ -64,6 +66,7 @@ export const usePointer = create<VoxelsState>()(set => ({
   setEnd: (v) => set(() => ({endVoxel: setEndPoint()})),
   voxels: [],
   setVoxels: (v) => set(state => ({voxels: [...state.voxels, v]})),
+  clearVoxel: () => set(() => ({voxels: [], startVoxel: setStartPoint(), endVoxel: setEndPoint()})),
   pos: new Vector3(),
   setPos: (v) => set(() => ({pos: v})),
   isGhost: false,
