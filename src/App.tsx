@@ -7,6 +7,7 @@ import { Scene } from './components/Scene';
 import { useDevice } from './hooks/useDevice';
 import { Joystick } from './components/Joystick';
 import { Phase, useGame } from './store/useGame';
+import { Suspense } from 'react';
 
 const dev = false;
 
@@ -35,6 +36,7 @@ function App() {
           }
         }}
       >
+        <Suspense>
           {dev && <Perf position="top-left" />}
           <Environment
             files="./test.hdr"
@@ -45,6 +47,7 @@ function App() {
           <Scene />
           {/* test scene */}
           {phase === Phase.build && <OrbitControls />}
+        </Suspense>
       </Canvas>
     </div>
   );

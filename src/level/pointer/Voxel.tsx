@@ -3,6 +3,7 @@ import { usePointer } from "../../store/usePointer";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useGLTF } from "@react-three/drei";
+import { usePosition } from "../../store/usePosition";
 
 const n = 2.5;
 
@@ -48,7 +49,8 @@ export const RigidVoxel = ({position}: {position: Vector3}) => {
 }
 
 export const RigidEndVoxel = ({position}: {position: Vector3}) => {
-  const {nodes, materials} = useGLTF('./cube.glb') as SceneModel;
+  // const setPosition = usePosition(s => s.setPosition);
+  // const startPosition = usePosition(s => s.position);
   
   return (
     <RigidBody 
@@ -56,11 +58,6 @@ export const RigidEndVoxel = ({position}: {position: Vector3}) => {
       colliders="cuboid" 
       position={position}
     >
-      {/* <mesh >
-        <boxGeometry args={[n, n, n]} />
-        <meshStandardMaterial color={'#5E6A81'} />
-      </mesh> */}
-      <mesh castShadow receiveShadow geometry={nodes.Cube.geometry} material={materials['Material']} />
       <CuboidCollider
         position={[0, 1.25, 0]}
         args={[1, 1, 1]}
@@ -69,11 +66,10 @@ export const RigidEndVoxel = ({position}: {position: Vector3}) => {
           console.log('ENTER', e);
           // e.rigidBodyObject.traverse(o => {
           //   if (o.userData.type === 'player') {
-          //     setPosition(new Vector3(0, 1, -4));
+          //     setPosition(startPosition);
           //   }
           // });
         }}
-        // onIntersectionExit={() => console.log('EXIT')}
       />
     </RigidBody>
   );
