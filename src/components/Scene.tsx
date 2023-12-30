@@ -1,18 +1,17 @@
 import { Physics } from '@react-three/rapier';
-// import { Ground } from '../level/Ground';
-import { Character } from './Character';
-// import { DynamicPlatform } from '../level/DynamicPlatform';
 import { Euler, Vector3 } from 'three';
 import { Model } from '../level/Model';
 import { Hangar } from '../level/Hangar';
 import { canvasList } from '../level/data';
 import { ImageBlock } from '../level/ImageBlock';
 import { Text } from '@react-three/drei';
+import { VRPlayer } from './VRPlayer';
+import { Suspense } from 'react';
 
 export const Scene = () => {
   return (
     <Physics timeStep="vary">
-      <Character />
+      <VRPlayer />
       <Text 
         position={[0, 4, 16]}
         rotation={new Euler().setFromVector3(new Vector3(0, Math.PI, 0))}
@@ -110,15 +109,17 @@ export const Scene = () => {
         rotation={new Vector3(0, -Math.PI, 0)}
         position={new Vector3(0, 0, -25.96)}
       />
-      {canvasList.map((c, i) => (
-        <ImageBlock
-          key={i}
-          url={c.url}
-          position={c.position}
-          rotation={c.rotation}
-          scale={c.scale}
-        />
-      ))}
+      <Suspense>
+        {canvasList.map((c, i) => (
+          <ImageBlock
+            key={i}
+            url={c.url}
+            position={c.position}
+            rotation={c.rotation}
+            scale={c.scale}
+          />
+        ))}
+      </Suspense>
     </Physics>
   );
 };
